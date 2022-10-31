@@ -12,19 +12,19 @@ let userModel = require('../models/user');
 let User = userModel.User; // alias
 
 module.exports.displayHomePage = (req, res, next) => {
-    res.render('index', {title: 'Home', displayName: req.user ? req.user.displayName : ''});
+    res.render('home', {title: 'Home', displayName: req.user ? req.user.displayName : ''});
 }
 
 module.exports.displayAboutPage = (req, res, next) => {
-    res.render('index', { title: 'About', displayName: req.user ? req.user.displayName : ''});
+    res.render('about', { title: 'About', displayName: req.user ? req.user.displayName : ''});
 }
 
 module.exports.displayProductsPage = (req, res, next) => {
-    res.render('index', { title: 'Products', displayName: req.user ? req.user.displayName : ''});
+    res.render('project', { title: 'Products', displayName: req.user ? req.user.displayName : ''});
 }
 
 module.exports.displayServicesPage = (req, res, next) => {
-    res.render('index', { title: 'Services', displayName: req.user ? req.user.displayName : ''});
+    res.render('services', { title: 'Services', displayName: req.user ? req.user.displayName : ''});
 }
 
 module.exports.displayContactPage = (req, res, next) => {
@@ -44,7 +44,7 @@ module.exports.displayLoginPage = (req, res, next) => {
     }
     else
     {
-        return res.redirect('/');
+        return res.redirect('/home');
     }
 }
 
@@ -90,7 +90,7 @@ module.exports.processLoginPage = (req, res, next) => {
             }, token: authToken});
             */
 
-            return res.redirect('/book-list');
+            return res.redirect('/contact');
         });
     })(req, res, next);
 }
@@ -151,7 +151,7 @@ module.exports.processRegisterPage = (req, res, next) => {
             */
 
             return passport.authenticate('local')(req, res, () => {
-                res.redirect('/book-list')
+                res.redirect('/contact')
             });
         }
     });
